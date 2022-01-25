@@ -1,5 +1,7 @@
 import de.braack.streetguess_de.interpreter.factory.literals.AdverbLiteralFactory;
 import de.braack.streetguess_de.interpreter.factory.XmlSourceFactory;
+import de.braack.streetguess_de.interpreter.factory.literals.XmlSourceLiteralFactory;
+import de.braack.streetguess_de.interpreter.factory.rules.XmlSourceRuleFactory;
 import de.braack.streetguess_de.interpreter.literals.Literal;
 import de.braack.streetguess_de.properties.Resources;
 import org.junit.jupiter.api.BeforeAll;
@@ -29,7 +31,7 @@ public class Quicktest {
     @Test
     public void quicktest(){
         try{
-            XmlSourceFactory factory = new AdverbLiteralFactory(litertalsFile);
+            XmlSourceLiteralFactory factory = new AdverbLiteralFactory(litertalsFile);
             Literal[] l = factory.createLiterals();
             assertNotNull(l);
         }
