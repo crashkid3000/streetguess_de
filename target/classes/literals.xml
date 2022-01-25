@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<literals>
+    <streetLiterals>
+        <literal>Acker</literal>
+        <literal>Äcker</literal>
+        <literal>Allee</literal>
+        <literal>Bult</literal>
+        <literal>Chaussee</literal>
+        <literal>Damm</literal>
+        <literal>Eck</literal>
+        <literal>Furt</literal>
+        <literal>Furth</literal>
+        <literal>Garten</literal>
+        <literal>Gasse</literal>
+        <literal>Hof</literal>
+        <literal>Koppel</literal>
+        <literal>Land</literal>
+        <literal>Leite</literal>
+        <literal>Mühle</literal>
+        <literal>Pfad</literal>
+        <literal>Platz</literal>
+        <literal>Steg</literal>
+        <literal>Stieg</literal>
+        <literal>Straße</literal>
+        <literal>Ufer</literal>
+        <literal>Vorstadt</literal>
+        <literal>Weg</literal>
+    </streetLiterals>
+    <adverbs>
+        <literal hasArticle="false">An</literal>
+        <literal hasArticle="true">Ans</literal>
+        <literal hasArticle="true">Am</literal>
+        <literal hasArticle="false">Bei</literal>
+        <literal hasArticle="true">Beim</literal>
+        <literal hasArticle="false">Durch</literal>
+        <literal hasArticle="true">Durchs</literal>
+        <literal hasArticle="false">Entlang</literal>
+        <literal hasArticle="false">Hinter</literal>
+        <literal hasArticle="true">Hinterm</literal>
+        <literal hasArticle="true">Hintern</literal>
+        <literal hasArticle="true">Hinters</literal>
+        <literal hasArticle="false">In</literal>
+        <literal hasArticle="true">Im</literal>
+        <literal hasArticle="true">Ins</literal>
+        <literal hasArticle="false">Längs</literal>
+        <literal hasArticle="false">Links</literal>
+        <literal hasArticle="false">Nach</literal>
+        <literal hasArticle="false">Neben</literal>
+        <literal hasArticle="false">Nördlich</literal>
+        <literal hasArticle="false">Nordöstlich</literal>
+        <literal hasArticle="false">Nordwestlich</literal>
+        <literal hasArticle="false">Oberhalb</literal>
+        <literal hasArticle="false">Östlich</literal>
+        <literal hasArticle="false">Rechts</literal>
+        <literal hasArticle="false">Südlich</literal>
+        <literal hasArticle="false">Südöstlich</literal>
+        <literal hasArticle="false">Südwestlich</literal>
+        <literal hasArticle="false">Über</literal>
+        <literal hasArticle="true">Überm</literal>
+        <literal hasArticle="true">Übern</literal>
+        <literal hasArticle="true">Übers</literal>
+        <literal hasArticle="false">Um</literal>
+        <literal hasArticle="true">Ums</literal>
+        <literal hasArticle="false">Unter</literal>
+        <literal hasArticle="false">Unterhalb</literal>
+        <literal hasArticle="true">Unterm</literal>
+        <literal hasArticle="true">Untern</literal>
+        <literal hasArticle="true">Unters</literal>
+        <literal hasArticle="false">Vor</literal>
+        <literal hasArticle="true">Vorm</literal>
+        <literal hasArticle="true">Vors</literal>
+        <literal hasArticle="false">Westlich</literal>
+        <literal hasArticle="false">Zu</literal>
+        <literal hasArticle="true">Zum</literal>
+        <literal hasArticle="true">Zur</literal>
+        <literal hasArticle="false">Zwischen</literal>
+    </adverbs>
+    <articles>
+        <literal>der</literal>
+        <literal>die</literal>
+        <literal>das</literal>
+        <literal>den</literal>
+        <literal>dem</literal>
+        <literal>des</literal>
+    </articles>
+    <adjectives>
+        <literal>Gerad</literal>
+        <literal>Grad</literal>
+        <literal>Hohe</literal>
+        <literal>Höher</literal>
+        <literal>Krumm</literal>
+        <literal>Kurz</literal>
+        <literal>Lang</literal>
+        <literal>Link</literal>
+        <literal>Nieder</literal>
+        <literal>Nördlich</literal>
+        <literal>Nordöstlich</literal>
+        <literal>Nordwestlich</literal>
+        <literal>Ober</literal>
+        <literal>Östlich</literal>
+        <literal>Recht</literal>
+        <literal>Südlich</literal>
+        <literal>Südöstlich</literal>
+        <literal>Südwestlich</literal>
+        <literal>Unter</literal>
+        <literal>Westlich</literal>
+    </adjectives>
+    <adjectiveEndings>
+        <literal>e</literal>
+        <literal>er</literal>
+        <literal>es</literal>
+    </adjectiveEndings>
+</literals>

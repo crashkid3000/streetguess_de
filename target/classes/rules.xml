@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rules>
+    <baseRule>
+        <rule>(streetname) (housenumber) (appendix)</rule>
+    </baseRule>
+    <streetNameRules>
+        <rule>(freetext) (street)</rule>
+        <rule>(freetext)-(street)</rule>
+        <rule>(adjective) (freetext)</rule>
+        <rule>(adjective) (article) (freetext)</rule>
+        <rule>(adverb) (freetext)</rule>
+        <rule>(adverb) (article) (freetext)</rule>
+        <rule>(street) (article) (freetext)</rule>
+        <rule>(street) (freetext)</rule>
+        <regexRule>\w\d</regexRule>
+        <rule>(freetext)</rule>
+        <rule>(freetext)(street)</rule>
+    </streetNameRules>
+    <houseNumberRules>
+        <regexRule>\d+((-|/)\d+|[a-z]((/|-)[a-z])?)?</regexRule>
+    </houseNumberRules>
+    <appendixRules>
+        <regexRule>.*</regexRule>
+    </appendixRules>
+</rules>
