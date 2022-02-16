@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+ <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <literals>
     <streetLiterals>
         <literal>Acker</literal>
@@ -25,6 +25,12 @@
         <literal>Ufer</literal>
         <literal>Vorstadt</literal>
         <literal>Weg</literal>
+        <literal>Str.</literal>
+        <literal>Str</literal>
+        <literal>Ch.</literal>
+        <literal>Ch</literal>
+        <literal>Pl.</literal>
+        <literal>Pl</literal>
     </streetLiterals>
     <adverbs>
         <literal hasArticle="false">An</literal>
