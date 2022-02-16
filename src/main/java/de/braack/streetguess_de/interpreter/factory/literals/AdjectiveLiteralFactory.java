@@ -16,7 +16,7 @@ public class AdjectiveLiteralFactory extends XmlSourceLiteralFactory {
     }
 
     @Override
-    protected Literal[] getLiteralsFromNodeList(NodeList nodes) {
+    protected Literal[] getInstancesFromNodeList(NodeList nodes) {
         LinkedList<Literal> retVal = new LinkedList<>();
         AdjectiveEndingLiteral[] endings;
         AdjectiveLiteral temp;

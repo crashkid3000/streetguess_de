@@ -15,7 +15,7 @@ public abstract class XmlSourceRuleFactory extends XmlSourceFactory<String> {
     }
 
     @Override
-    protected String[] getLiteralsFromNodeList(NodeList nodes) {
+    protected String[] getInstancesFromNodeList(NodeList nodes) {
         List<String> retVal = new LinkedList<>();
         for(int i = 0; i < nodes.getLength(); i++){
             Node node = nodes.item(i);

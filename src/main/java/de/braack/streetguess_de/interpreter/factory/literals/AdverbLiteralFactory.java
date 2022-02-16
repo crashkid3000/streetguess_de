@@ -16,7 +16,7 @@ public class AdverbLiteralFactory extends XmlSourceLiteralFactory {
     }
 
     @Override
-    protected Literal[] getLiteralsFromNodeList(NodeList nodes) {
+    protected Literal[] getInstancesFromNodeList(NodeList nodes) {
         List<Literal> retVal = new LinkedList<>();
         for(int i = 0; i < nodes.getLength(); i++){
             Node node = nodes.item(i);
