@@ -42,5 +42,7 @@ public class InterpreterImpl implements Interpreter {
 
     public String interpret(String street) throws IOException{
         final String baseRule = new BaseRuleFactory(rulesFile).createLiterals()[0];
+
+        throw new RuntimeException("todo");
     }
 }
