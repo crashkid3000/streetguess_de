@@ -20,7 +20,7 @@ import java.io.IOException;
  * A factory that creates instances of a given type by reading from an XML file. Implementing classes must specify
  * an Xpath String <code>xpathString</code> that will be used for finding the instances. Additionally, the implementing
  * classes must also specify how to extract the objects from the {@link NodeList}.
- * @param <T> The type of the intances thata re to be created.
+ * @param <T> The type of the instances that are to be created.
  */
 public abstract class XmlSourceFactory<T> {
 
