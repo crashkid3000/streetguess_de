@@ -21,7 +21,7 @@ public class AdjectiveLiteralFactory extends XmlSourceLiteralFactory {
         AdjectiveEndingLiteral[] endings;
         AdjectiveLiteral temp;
         try {
-            endings = (AdjectiveEndingLiteral[]) new AdjectiveEndingLiteralFactory(content).createLiterals();
+            endings = (AdjectiveEndingLiteral[]) new AdjectiveEndingLiteralFactory(content).createObjects();
         }
         catch (Exception e){
             endings = new AdjectiveEndingLiteral[]{ new AdjectiveEndingLiteral("e"), new AdjectiveEndingLiteral("er"), new AdjectiveEndingLiteral("es")};

@@ -40,7 +40,7 @@ public abstract class XmlSourceFactory<T> {
      * @return All instances of the given type <code>T</code> that could be extracted from the provided file.
      * @throws IOException If something goes wrong while attempting to access the file, including parsing errors.
      */
-    public T[] createLiterals() throws IOException {
+    public T[] createObjects() throws IOException {
         NodeList nodes = getNodesFromDocument();
         T[] retVal = getInstancesFromNodeList(nodes);
         return retVal;

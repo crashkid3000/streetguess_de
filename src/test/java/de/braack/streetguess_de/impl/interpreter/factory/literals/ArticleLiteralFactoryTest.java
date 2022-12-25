@@ -24,7 +24,7 @@ public class ArticleLiteralFactoryTest {
     public static void populateLiterals() throws SAXException, ParserConfigurationException, XPathExpressionException {
         XmlSourceLiteralFactory factory = new ArticleLiteralFactory(Resources.getInstance().getLiteralsFile());
         try {
-            literals = factory.createLiterals();
+            literals = factory.createObjects();
         }
         catch (IOException ioe){
             assumeTrue(false, "Could not read configured file containing literals");

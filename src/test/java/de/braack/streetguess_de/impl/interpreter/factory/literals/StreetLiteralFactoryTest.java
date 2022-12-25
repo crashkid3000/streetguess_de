@@ -2,8 +2,6 @@ package de.braack.streetguess_de.impl.interpreter.factory.literals;
 
 import de.braack.streetguess_de.interpreter.factory.literals.StreetLiteralFactory;
 import de.braack.streetguess_de.interpreter.factory.literals.XmlSourceLiteralFactory;
-import de.braack.streetguess_de.interpreter.factory.rules.StreetNameRuleFactory;
-import de.braack.streetguess_de.interpreter.factory.rules.XmlSourceRuleFactory;
 import de.braack.streetguess_de.interpreter.literals.Literal;
 import de.braack.streetguess_de.interpreter.literals.StreetLiteral;
 import de.braack.streetguess_de.properties.Resources;
@@ -26,7 +24,7 @@ public class StreetLiteralFactoryTest {
     public static void populateLiterals() throws SAXException, ParserConfigurationException, XPathExpressionException {
         XmlSourceLiteralFactory factory = new StreetLiteralFactory(Resources.getInstance().getLiteralsFile());
         try {
-            literals = factory.createLiterals();
+            literals = factory.createObjects();
         }
         catch (IOException ioe){
             assumeTrue(false, "Could not read configured file containing literals");
