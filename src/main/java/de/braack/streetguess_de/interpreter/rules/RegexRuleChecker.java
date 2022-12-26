@@ -3,9 +3,6 @@ package de.braack.streetguess_de.interpreter.rules;
 import de.braack.streetguess_de.interpreter.regex.RegexAnalyzer;
 import lombok.NonNull;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegexRuleChecker implements RuleChecker {
@@ -29,7 +26,6 @@ public class RegexRuleChecker implements RuleChecker {
 
     @Override
     public int getFittingScore() {
-        final String regex = regexPattern.pattern();
         //# kleene operators .* or .*?
         final int noOfKleenes = regexAnalyzer.getNumberOfKleeneOperators();
         //# existence operators .+ or .+?
@@ -37,6 +33,7 @@ public class RegexRuleChecker implements RuleChecker {
         //# of replacers \s \w etc (not \\)
         final int noOfReplacers = regexAnalyzer.getNumberOfReplacers();
         //# of specifics: no kleene, no existence ops, no replacers, no braces or brackets
+        final int noOfLiteralGroups = regexAnalyzer.getLiteralsFromRegex().length;
 
         return 0;
     }
