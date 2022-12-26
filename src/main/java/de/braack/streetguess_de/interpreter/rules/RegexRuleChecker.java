@@ -27,13 +27,13 @@ public class RegexRuleChecker implements RuleChecker {
     @Override
     public int getFittingScore() {
         //# kleene operators .* or .*?
-        final int noOfKleenes = regexAnalyzer.getNumberOfKleeneOperators();
+        final int noOfKleenes = regexAnalyzer.calculateNumberOfKleeneOperators();
         //# existence operators .+ or .+?
-        final int noOfExistenceOps = regexAnalyzer.getNumberOfExistenceOperators();
+        final int noOfExistenceOps = regexAnalyzer.calculateNumberOfExistenceOperators();
         //# of replacers \s \w etc (not \\)
-        final int noOfReplacers = regexAnalyzer.getNumberOfReplacers();
+        final int noOfReplacers = regexAnalyzer.calculateNumberOfReplacers();
         //# of specifics: no kleene, no existence ops, no replacers, no braces or brackets
-        final int noOfLiteralGroups = regexAnalyzer.getLiteralsFromRegex().length;
+        final int noOfLiteralGroups = regexAnalyzer.extractLiteralsFromRegex().length;
 
         return 0;
     }

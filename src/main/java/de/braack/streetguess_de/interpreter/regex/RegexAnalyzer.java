@@ -59,7 +59,7 @@ public class RegexAnalyzer {
      * Checks how many Kleene operators are within the given string: .* or .*?
      * @return The number of Kleene operators
      */
-    public int getNumberOfKleeneOperators(){
+    public int calculateNumberOfKleeneOperators(){
         return getNumberOfAnyMatchingRegexes(KLEENE_OPERATOR_LIST);
     }
 
@@ -67,7 +67,7 @@ public class RegexAnalyzer {
      * Returns hoe many character existence operators exist: .+ or .+?
      * @return The number of existence operators
      */
-    public int getNumberOfExistenceOperators() {
+    public int calculateNumberOfExistenceOperators() {
         return getNumberOfAnyMatchingRegexes(EXISTENCE_OPERATOR_LIST);
     }
 
@@ -75,7 +75,7 @@ public class RegexAnalyzer {
      * Returns how many replacer characters exist: \s, \S, \0<i>nnn</i> etc.
      * @return The number of replacer chars
      */
-    public int getNumberOfReplacers() {
+    public int calculateNumberOfReplacers() {
         //List of regexes manually compiled taken from https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
         return getNumberOfAnyMatchingRegexes(REPLACERS_LIST); //Any character except one in the Greek block (negation)
     }
@@ -99,7 +99,7 @@ public class RegexAnalyzer {
      * @return The literals that could be found inside the string. They won't be in the order they appeared in the
      * original regex.
      */
-    public String[][] getLiteralsFromRegex() {
+    public String[][] extractLiteralsFromRegex() {
         return new LiteralsExtractor().extractLiterals();
     }
 
