@@ -1,5 +1,7 @@
 package de.braack.streetguess_de.interpreter.regex;
 
+import lombok.NonNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -12,12 +14,12 @@ import java.util.regex.Pattern;
  */
 public class RegexAnalyzer {
 
-    private static final String[] KLEENE_OPERATOR_LIST = {"\\.\\*", "\\.\\*\\?"};
-    private static final String[] EXISTENCE_OPERATOR_LIST = {"\\.\\+", "\\.\\+\\?"};
-    private static final String[] REPLACERS_LIST = {"\\\\0\\([0-3])?[0-7]{1,2}", //octal numbers
+    private static final String[] KLEENE_OPERATOR_LIST = {"\\.\\*(\\?)?"};
+    private static final String[] EXISTENCE_OPERATOR_LIST = {"\\.\\+(\\?)?"};
+    private static final String[] REPLACERS_LIST = {"\\\\0([0-3])?[0-7]{1,2}", //octal numbers
             "\\\\x\\[0-9a-fA-F]{2}", //hexadecimal numbers
             "\\\\u\\[0-9a-fA-F]{4}", //hexadecimal numbers too
-            "\\\\{tnrfaedDsSwW}", //other control characters
+            "\\\\[tnrfaedDsSwW]", //other control characters
             "\\\\c[a-zA-Z]", //"The control character corresponding to [[a-zA-Z]]" -- ??? ... but it's here regardless, so we gotta consider it
             "\\\\p\\{(Lower|Upper|ASCII|Alpha|Digit|Alnum|Punct|Graph|Print|Blank|Cntrl|XDigit|Space|" + //Posix characters...
                     "javaLowerCase|javaUpperCase|javaWhitespace|javaMirrored|" + //...and java.lang.Character classes...
@@ -26,11 +28,11 @@ public class RegexAnalyzer {
 
     private final String searchTarget;
 
-    public RegexAnalyzer(String regexString) {
+    public RegexAnalyzer(@NonNull String regexString) {
         this.searchTarget = regexString;
     }
 
-    public RegexAnalyzer(Pattern pattern) {
+    public RegexAnalyzer(@NonNull Pattern pattern) {
         this.searchTarget = pattern.pattern();
     }
 
