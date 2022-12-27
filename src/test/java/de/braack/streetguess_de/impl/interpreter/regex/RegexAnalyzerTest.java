@@ -28,6 +28,8 @@ public class RegexAnalyzerTest {
                 Arguments.of(".*", 1),
                 Arguments.of(".*?", 1),
                 Arguments.of(".*?.*", 2),
+                Arguments.of("\\.*.*?", 1),
+                Arguments.of("\\\\.*.*?", 2),
                 Arguments.of(testString, 3)
         );
     }
@@ -37,6 +39,8 @@ public class RegexAnalyzerTest {
                 Arguments.of(".+", 1),
                 Arguments.of(".+?", 1),
                 Arguments.of(".+?.+", 2),
+                Arguments.of("\\.+.+?", 1),
+                Arguments.of("\\\\.+.+?", 2),
                 Arguments.of(testString, 1)
         );
     }
@@ -46,8 +50,10 @@ public class RegexAnalyzerTest {
                 Arguments.of("\\s", 1),
                 Arguments.of("\\p{InGreek}", 1),
                 Arguments.of("\\w\\W", 2),
-                Arguments.of(testString, 3)
-                //todo: more throroughly test replacers
+                Arguments.of(testString, 3),
+                Arguments.of("012\\012\\07\\0377\\xDA\\xB0\\t\\T\\\\e", 6), //\\012, \\07, \\0377\, \\xDA, \\xB0, \\t = 6 replacers
+                Arguments.of("\\p{IsLatin}\\p{IsAlphabetic}\\S\\p{HahaNope}\\s\\09", 4),
+                Arguments.of("n\\n\\Nn\\nt\\ente", 3)
         );
     }
 
@@ -180,7 +186,7 @@ public class RegexAnalyzerTest {
     }
 
     @Nested
-    @DisplayName("Tests for calculateNumberOfExistenceOperators()")
+    @DisplayName("Tests for calculateNumberOfReplacers()")
     class CalculateNumberOfReplacers {
 
         @ParameterizedTest
