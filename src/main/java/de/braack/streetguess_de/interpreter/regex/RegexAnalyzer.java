@@ -1,6 +1,9 @@
 package de.braack.streetguess_de.interpreter.regex;
 
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,19 +15,12 @@ import java.util.regex.Pattern;
 /**
  * Performs analysis on regexes
  */
+@Slf4j
 public class RegexAnalyzer {
 
     private static final String[] KLEENE_OPERATOR_LIST = {"(^\\.|(?<=\\\\)\\\\\\.|(?<!\\\\)\\.)\\*\\??"};
     private static final String[] EXISTENCE_OPERATOR_LIST = {"(^\\.|(?<=\\\\)\\\\\\.|(?<!\\\\)\\.)\\+\\??"};
-    private static final String[] REPLACERS_LIST = {"(^\\\\|[^\\\\]\\\\)0([0-3])?[0-7]{1,2}", //octal numbers
-            "(^\\\\|[^\\\\]\\\\)x[0-9a-fA-F]{2}", //hexadecimal numbers
-            "(^\\\\|[^\\\\]\\\\)u[0-9a-fA-F]{4}", //hexadecimal numbers too
-            "(^\\\\|[^\\\\]\\\\)[tnrfaedDsSwW]", //other control characters
-            "(^\\\\|[^\\\\]\\\\)c[a-zA-Z]", //"The control character corresponding to [[a-zA-Z]]" -- ??? ... but it's here regardless, so we gotta consider it
-            "(^\\\\|[^\\\\]\\\\)p\\{(Lower|Upper|ASCII|Alpha|Digit|Alnum|Punct|Graph|Print|Blank|Cntrl|XDigit|Space|" + //Posix characters...
-                    "javaLowerCase|javaUpperCase|javaWhitespace|javaMirrored|" + //...and java.lang.Character classes...
-                    "IsLatin|InGreek|Lu|IsAlphabetic|Sc)\\}", //...and classes for Unicode scripts, blocks, categories and binary properties
-            "(^\\\\|[^\\\\]\\\\)P\\{InGreek\\}"};
+    private static final String[] REPLACERS_LIST = createReplacersListArray();
 
     private final String searchTarget;
 
@@ -34,6 +30,19 @@ public class RegexAnalyzer {
 
     public RegexAnalyzer(@NonNull Pattern pattern) {
         this.searchTarget = pattern.pattern();
+    }
+
+    private static String[] createReplacersListArray(){
+        final String start = "(^\\\\|(?<=\\\\)\\\\\\\\|(?<!\\\\)\\\\)";
+        return new String[]{ start + "0([0-3])?[0-7]{1,2}", //octal numbers
+                start + "x[0-9a-fA-F]{2}", //hexadecimal numbers
+                start + "u[0-9a-fA-F]{4}", //hexadecimal numbers too
+                start + "[tnrfaedDsSwW]", //other control characters
+                start + "c[a-zA-Z]", //"The control character corresponding to [[a-zA-Z]]" -- ??? ... but it's here regardless, so we gotta consider it
+                start + "p\\{(Lower|Upper|ASCII|Alpha|Digit|Alnum|Punct|Graph|Print|Blank|Cntrl|XDigit|Space|" + //Posix characters...
+                        "javaLowerCase|javaUpperCase|javaWhitespace|javaMirrored|" + //...and java.lang.Character classes...
+                        "IsLatin|InGreek|Lu|IsAlphabetic|Sc)\\}", //...and classes for Unicode scripts, blocks, categories and binary properties
+                start + "P\\{InGreek\\}"};
     }
 
     /**
@@ -51,7 +60,7 @@ public class RegexAnalyzer {
         for(Matcher matcher: matchers) {
             while(matcher.find()){
                 count++;
-                System.out.println("Found matched: " + matcher.group());
+                log.info("Found matched: " + matcher.group());
             }
         }
 

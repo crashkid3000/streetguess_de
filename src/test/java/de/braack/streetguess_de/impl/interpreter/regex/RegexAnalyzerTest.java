@@ -207,7 +207,7 @@ public class RegexAnalyzerTest {
         @DisplayName("Using an invalid regex, the number of replacers are still found")
         void cnor_withInvalidRegex_returnsCorrectNumber() {
             //Arrange
-            final String badRegex = "add\\s\\tnw.+fw{\\sveve=3.+?..+";
+            final String badRegex = "add\\s\\tnw.+fw{\\svev\\\\ne=3.+?..+";
             final int expectedReplacers = 3;
             final RegexAnalyzer regexAnalyzer = createRegexAnalyzer(badRegex);
 
