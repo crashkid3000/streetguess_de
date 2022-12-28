@@ -14,8 +14,8 @@ import java.util.regex.Pattern;
  */
 public class RegexAnalyzer {
 
-    private static final String[] KLEENE_OPERATOR_LIST = {"\\.\\*(\\?)?"};
-    private static final String[] EXISTENCE_OPERATOR_LIST = {"\\.\\+(\\?)?"};
+    private static final String[] KLEENE_OPERATOR_LIST = {"(^\\.|(?<=\\\\)\\\\\\.|(?<!\\\\)\\.)\\*\\??"};
+    private static final String[] EXISTENCE_OPERATOR_LIST = {"(^\\.|(?<=\\\\)\\\\\\.|(?<!\\\\)\\.)\\+\\??"};
     private static final String[] REPLACERS_LIST = {"(^\\\\|[^\\\\]\\\\)0([0-3])?[0-7]{1,2}", //octal numbers
             "(^\\\\|[^\\\\]\\\\)x[0-9a-fA-F]{2}", //hexadecimal numbers
             "(^\\\\|[^\\\\]\\\\)u[0-9a-fA-F]{4}", //hexadecimal numbers too
