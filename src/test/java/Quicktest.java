@@ -1,23 +1,22 @@
-import de.braack.streetguess_de.interpreter.factory.literals.AdverbLiteralFactory;
-import de.braack.streetguess_de.interpreter.factory.literals.XmlSourceLiteralFactory;
-import de.braack.streetguess_de.interpreter.literals.Literal;
 import de.braack.streetguess_de.properties.Resources;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Slf4j
 public class Quicktest {
 
     private static ResourceBundle resources;
     private static File litertalsFile;
     private static File rulesFile;
-    private static final Logger log = LoggerFactory.getLogger(Quicktest.class);
 
     @BeforeAll
     public static void init(){
@@ -27,15 +26,24 @@ public class Quicktest {
     }
 
     @Test
-    public void quicktest(){
-        try{
-            XmlSourceLiteralFactory factory = new AdverbLiteralFactory(litertalsFile);
-            Literal[] l = factory.createObjects();
-            assertNotNull(l);
-        }
-        catch (Exception e) {
-            log.error("Ah shit", e);
-        }
+    void log() {
+        log.trace("trace");
+        log.debug("debug");
+        log.info("info");
+        log.warn("warn");
+        log.error("error");
+    }
 
+    @Test
+    public void quicktest(){
+        final List<String> liste = new LinkedList<>();
+        doof(liste);
+        assertTrue(liste.size() > 0);
+    }
+
+    private void doof(List<String> liste){
+        if(liste != null){
+            liste.add("doof");
+        }
     }
 }
