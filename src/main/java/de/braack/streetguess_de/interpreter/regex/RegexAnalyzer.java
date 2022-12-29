@@ -2,8 +2,6 @@ package de.braack.streetguess_de.interpreter.regex;
 
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,7 +58,7 @@ public class RegexAnalyzer {
         for(Matcher matcher: matchers) {
             while(matcher.find()){
                 count++;
-                log.info("Found matched: " + matcher.group());
+                log.trace("Found matched: " + matcher.group());
             }
         }
 
@@ -88,7 +86,7 @@ public class RegexAnalyzer {
      * @return The number of replacer chars
      */
     public int calculateNumberOfReplacers() {
-        //List of regexes manually compiled taken from https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+        //List of regexes manually compiled, taken from https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
         return getNumberOfAnyMatchingRegexes(REPLACERS_LIST); //Any character except one in the Greek block (negation)
     }
 
