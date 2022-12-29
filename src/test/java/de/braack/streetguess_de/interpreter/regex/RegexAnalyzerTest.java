@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -53,6 +54,20 @@ public class RegexAnalyzerTest {
                 Arguments.of("012\\012\\07\\0377\\xDA\\xB0\\t\\T\\\\e", 6), //\\012, \\07, \\0377\, \\xDA, \\xB0, \\t = 6 replacers
                 Arguments.of("\\p{IsLatin}\\p{IsAlphabetic}\\S\\p{HahaNope}\\s\\09", 4),
                 Arguments.of("n\\n\\Nn\\nt\\ente", 3)
+        );
+    }
+
+    static Stream<Arguments> PROVIDER_elfr_withGoodRegexInput_returnCorrectLiteralsArrays() {
+        return Stream.of(
+                Arguments.of("abcde", new String[][]{ new String[]{"abcde"} }),
+                Arguments.of("abc def", new String[][]{ new String[]{"abc def"} }),
+                Arguments.of("abc\\sdef", new String[][]{ new String[]{"abc"}, new String[]{"def"} }),
+                Arguments.of("abc\\\\sdef", new String[][]{ new String[]{"abc"}, new String[]{"sdef"} }),
+                Arguments.of("\\tabc", new String[][]{ new String[]{}, new String[]{"abc"} }),
+                Arguments.of("abc\\t",  new String[][]{ new String[]{"abc"}, new String[]{} }),
+                Arguments.of("abc\\tone\\Wtwo\\p{IsLatin}three", new String[][]{ new String[]{"abc"}, new String[]{"one"}, new String[]{"two"}, new String[]{"three"}}),
+                Arguments.of("doof(mann|frau|person)", new String[][]{ new String[]{"doof"}, new String[]{"mann", "frau", "person"} }),
+                Arguments.of("select wisely [aeiou]", new String[][]{ new String[]{"select wisely "}, new String[]{"a", "e", "i", "o", "u"} })
         );
     }
 
@@ -245,6 +260,21 @@ public class RegexAnalyzerTest {
 
             //Assert
             assertEquals(expectedReplacers, calculatedReplacers);
+        }
+    }
+
+    @Nested
+    @DisplayName("Tests for extractLiteralsFromRegex()")
+    class ExtractLiteralsFromRegex {
+
+        @ParameterizedTest
+        @MethodSource("de.braack.streetguess_de.interpreter.regex.RegexAnalyzerTest#PROVIDER_elfr_withGoodRegexInput_returnCorrectLiteralsArrays")
+        void elfr_withGoodRegexInput_returnCorrectLiteralsArrays(final String inputRegex, final String[][] expectedLiterals) {
+            final RegexAnalyzer regexAnalyzer = new RegexAnalyzer(inputRegex);
+
+            final String[][] actualLiterals = regexAnalyzer.extractLiteralsFromRegex();
+
+            assertArrayEquals(expectedLiterals, actualLiterals);
         }
     }
 }
