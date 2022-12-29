@@ -128,7 +128,6 @@ public class RegexAnalyzer {
             for(final String operatorToDelete: operatorsToDelete){
                 int totalLength = 0;
                 List<String[]> splitResultList = new ArrayList<>();
-                splitResultList.add(joinedSplitResultsArray);
 
                 for(String joinedSplitResult: joinedSplitResultsArray){
                     final String[] splitResult = joinedSplitResult.split(operatorToDelete);

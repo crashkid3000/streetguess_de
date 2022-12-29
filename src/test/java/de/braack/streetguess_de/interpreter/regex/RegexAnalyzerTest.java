@@ -62,7 +62,7 @@ public class RegexAnalyzerTest {
                 Arguments.of("abcde", new String[][]{ new String[]{"abcde"} }),
                 Arguments.of("abc def", new String[][]{ new String[]{"abc def"} }),
                 Arguments.of("abc\\sdef", new String[][]{ new String[]{"abc"}, new String[]{"def"} }),
-                Arguments.of("abc\\\\sdef", new String[][]{ new String[]{"abc"}, new String[]{"sdef"} }),
+                Arguments.of("abc\\\\sdef", new String[][]{ new String[]{"abc\\sdef"} }),
                 Arguments.of("\\tabc", new String[][]{ new String[]{}, new String[]{"abc"} }),
                 Arguments.of("abc\\t",  new String[][]{ new String[]{"abc"}, new String[]{} }),
                 Arguments.of("abc\\tone\\Wtwo\\p{IsLatin}three", new String[][]{ new String[]{"abc"}, new String[]{"one"}, new String[]{"two"}, new String[]{"three"}}),
