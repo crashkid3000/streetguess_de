@@ -30,3 +30,6 @@ hs_err_pid*
 /.idea/
 /target/
 /streetguess_de.iml
+
+# Quicktest file
+*Quicktest.java
