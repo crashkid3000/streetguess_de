@@ -31,5 +31,5 @@ hs_err_pid*
 /target/
 /streetguess_de.iml
 
-# Quicktest file
-*Quicktest.java
+# QuickTest file
+*QuickTest.java
