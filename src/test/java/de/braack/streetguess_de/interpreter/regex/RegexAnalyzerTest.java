@@ -1,6 +1,5 @@
-package de.braack.streetguess_de.impl.interpreter.regex;
+package de.braack.streetguess_de.interpreter.regex;
 
-import de.braack.streetguess_de.interpreter.regex.RegexAnalyzer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -62,7 +61,7 @@ public class RegexAnalyzerTest {
     class CalculateNumberOfKleeneOperators {
 
         @ParameterizedTest
-        @MethodSource("de.braack.streetguess_de.impl.interpreter.regex.RegexAnalyzerTest#PROVIDER_cnoko_withValidInput_returnsCorrectNumber")
+        @MethodSource("de.braack.streetguess_de.interpreter.regex.RegexAnalyzerTest#PROVIDER_cnoko_withValidInput_returnsCorrectNumber")
         @DisplayName("Good case test: Finding right number of kleene operators")
         void cnoko_withValidInput_returnsCorrectNumber(final String regex, final int expectedKleeneOperators) {
             //Arrange
@@ -126,7 +125,7 @@ public class RegexAnalyzerTest {
     class CalculateNumberOfExistenceOperators {
 
         @ParameterizedTest
-        @MethodSource("de.braack.streetguess_de.impl.interpreter.regex.RegexAnalyzerTest#PROVIDER_cnoeo_withValidInput_returnsCorrectNumber")
+        @MethodSource("de.braack.streetguess_de.interpreter.regex.RegexAnalyzerTest#PROVIDER_cnoeo_withValidInput_returnsCorrectNumber")
         @DisplayName("Good case test: Finding right number of existence operators")
         void cnoeo_withValidInput_returnsCorrectNumber(final String regex, final int expectedKleeneOperators) {
             //Arrange
@@ -190,7 +189,7 @@ public class RegexAnalyzerTest {
     class CalculateNumberOfReplacers {
 
         @ParameterizedTest
-        @MethodSource("de.braack.streetguess_de.impl.interpreter.regex.RegexAnalyzerTest#PROVIDER_cnor_withValidInput_returnsCorrectNumber")
+        @MethodSource("de.braack.streetguess_de.interpreter.regex.RegexAnalyzerTest#PROVIDER_cnor_withValidInput_returnsCorrectNumber")
         @DisplayName("Good case test: Finding right number of replacers")
         void cnor_withValidInput_returnsCorrectNumber(final String regex, final int expectedKleeneOperators) {
             //Arrange

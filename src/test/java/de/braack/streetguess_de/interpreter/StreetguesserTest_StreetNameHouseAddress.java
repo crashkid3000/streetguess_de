@@ -1,4 +1,4 @@
-package de.braack.streetguess_de.impl.interpreter;
+package de.braack.streetguess_de.interpreter;
 
 public class StreetguesserTest_StreetNameHouseAddress {
 }
