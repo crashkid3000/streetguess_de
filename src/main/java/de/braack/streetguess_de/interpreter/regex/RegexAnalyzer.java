@@ -140,7 +140,10 @@ public class RegexAnalyzer {
             }
 
             for(String literal: joinedSplitResultsArray){
-                retVal.add(new String[]{literal});
+                if(literal != null && !literal.equals("")){ //Clean up result already when we are inserting values
+                    retVal.add(new String[]{literal});
+                }
+
             }
 
             return retVal.toArray(String[][]::new);
@@ -151,12 +154,14 @@ public class RegexAnalyzer {
             while(group1Regex.find()) {
                 String group1MatchingResult = group1Regex.group();
                 group1MatchingResult = group1MatchingResult.substring(1, group1MatchingResult.length() - 1); //remove surrounding ()
-                literalArrays.add(group1MatchingResult.split("\\|\\s*?"));
+                String[] group11MatchingResultArray = group1MatchingResult.split("\\|\\s*?");
+                group11MatchingResultArray = cleanUpArray(group11MatchingResultArray);
+                literalArrays.add(group11MatchingResultArray);
             }
         }
 
         private void addCharacterGroupLiterals(final List<String[]> literalArrays) {
-            final Matcher group2Regex = Pattern.compile("\\{(\\w(-\\w)?)+?\\}").matcher(RegexAnalyzer.this.searchTarget);
+            final Matcher group2Regex = Pattern.compile("\\[(\\w(-\\w)?)+?]").matcher(RegexAnalyzer.this.searchTarget);
             while(group2Regex.find()) {
                 String group2MatchingResult = group2Regex.group();
                 group2MatchingResult = group2MatchingResult.substring(1, group2MatchingResult.length() - 1);
@@ -165,6 +170,7 @@ public class RegexAnalyzer {
                 for(int i = 0; i < group2MatchingResultArray.length; i++){
                     group2MatchingResultArray[i] = group2MatchingResult.charAt(i) + "";
                 }
+                //todo: implement cleanup for group2 matching (similar to group1 in result)
                 literalArrays.add(group2MatchingResultArray);
             }
         }
@@ -196,6 +202,24 @@ public class RegexAnalyzer {
                 }
             }
             return retVal;
+        }
+
+        /**
+         * Cleans the given array by putting it into a new removing elements that are <code>null</code> or empty.
+         * @param toBeCleaned The array that will be cleaned
+         * @return The cleaned array
+         */
+        private String[] cleanUpArray(String[] toBeCleaned) {
+            final List<String> temp = new ArrayList<>();
+            for(String string: toBeCleaned) {
+                if(string != null && !string.equals("")){
+                    temp.add(string);
+                }
+            }
+
+            toBeCleaned = temp.toArray(String[]::new);
+
+            return toBeCleaned;
         }
 
     }

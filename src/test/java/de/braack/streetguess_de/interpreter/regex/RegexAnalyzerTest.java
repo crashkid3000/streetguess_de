@@ -1,5 +1,6 @@
 package de.braack.streetguess_de.interpreter.regex;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -15,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Unit tests for the class {@link RegexAnalyzer}
  */
+@Slf4j
 public class RegexAnalyzerTest {
 
     private static final String testString = "easy (alter|native)\\p{javaLowerCase}\\p{javaCowerLase}\\t{2}{ad-fG-H}.+?and\\s.*.*?.*a Spac(e|er){9,}";
@@ -62,12 +65,17 @@ public class RegexAnalyzerTest {
                 Arguments.of("abcde", new String[][]{ new String[]{"abcde"} }),
                 Arguments.of("abc def", new String[][]{ new String[]{"abc def"} }),
                 Arguments.of("abc\\sdef", new String[][]{ new String[]{"abc"}, new String[]{"def"} }),
-                Arguments.of("abc\\\\sdef", new String[][]{ new String[]{"abc\\sdef"} }),
-                Arguments.of("\\tabc", new String[][]{ new String[]{}, new String[]{"abc"} }),
-                Arguments.of("abc\\t",  new String[][]{ new String[]{"abc"}, new String[]{} }),
+                Arguments.of("abc\\\\sdef", new String[][]{ new String[]{"abc\\\\sdef"} }),
+                Arguments.of("\\tabc", new String[][]{ new String[]{"abc"} }),
+                Arguments.of("abc\\t",  new String[][]{ new String[]{"abc"} }),
                 Arguments.of("abc\\tone\\Wtwo\\p{IsLatin}three", new String[][]{ new String[]{"abc"}, new String[]{"one"}, new String[]{"two"}, new String[]{"three"}}),
                 Arguments.of("doof(mann|frau|person)", new String[][]{ new String[]{"doof"}, new String[]{"mann", "frau", "person"} }),
-                Arguments.of("select wisely [aeiou]", new String[][]{ new String[]{"select wisely "}, new String[]{"a", "e", "i", "o", "u"} })
+                Arguments.of("doofperson()", new String[][]{ new String[]{"doofperson"} }),
+                Arguments.of("illusion of choice: (|)", new String[][]{ new String[]{"illusion of choice: "} }),
+                Arguments.of("select wisely [aeiou]", new String[][]{ new String[]{"select wisely "}, new String[]{"a", "e", "i", "o", "u"} }),
+                Arguments.of("don't select at all []", new String[][]{ new String[]{"don't select at all "} }),
+                Arguments.of("(|||)brackets(|)", new String[][]{ new String[]{"brackets"} }),
+                Arguments.of("[]uhhhh[]", new String[][]{ new String[]{"uhhhh"} })
         );
     }
 
@@ -274,7 +282,22 @@ public class RegexAnalyzerTest {
 
             final String[][] actualLiterals = regexAnalyzer.extractLiteralsFromRegex();
 
+            printActualResult(actualLiterals);
+
             assertArrayEquals(expectedLiterals, actualLiterals);
+        }
+
+        private void printActualResult(final String[][] literals){
+            StringBuilder printable = new StringBuilder("The actual result is: { ");
+
+            for(String[] literalArray: literals){
+                printable.append(Arrays.toString(literalArray)).append(", ");
+            }
+
+            printable.replace(printable.length() - 2, printable.length(), "");
+            printable.append(" }");
+
+            log.info(printable.toString());
         }
     }
 }
